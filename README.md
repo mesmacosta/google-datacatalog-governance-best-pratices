@@ -8,7 +8,7 @@ Repo with scripts and automations to help ensure best practices in Google Data C
 
 - [Tag Central](tag-central/README.md) 
     ![N|Solid](tag-central/docs/architecture.png "architecture") 
-    Sets up a Tag Central project with Tag Templates, and sets the IAM permissions for 3 personas: 
+    Uses Terraform to set up a Tag Central project with Tag Templates, and sets the IAM permissions for 3 personas: 
     1. **Data Governor**  
         * Has admin access to all Data Catalog resources in the Tag Central project and Analytics projects.
     1. **Data Curator**  
