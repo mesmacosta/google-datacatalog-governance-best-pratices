@@ -57,7 +57,8 @@ support using end user credentials from the Google Cloud SDK. You need to set th
 
 Create a Service Account with the required permissions to create Data Catalog Tag Templates.
 ```bash
-export GOOGLE_CLOUD_PROJECT={project-id}
+# Change the placeholder {tag-central-project-id}
+export GOOGLE_CLOUD_PROJECT={tag-central-project-id}
 export SA_NAME=terraform-dc-resources-sa
 
 # Create Service Account
@@ -71,11 +72,6 @@ gcloud projects add-iam-policy-binding $GOOGLE_CLOUD_PROJECT \
 --quiet \
 --project $GOOGLE_CLOUD_PROJECT \
 --role "roles/datacatalog.tagTemplateOwner"
-```
-
-#### Set terraform execution project
-```bash
-export GOOGLE_CLOUD_PROJECT={project-id}
 ```
 
 #### Set terraform variable placeholders
