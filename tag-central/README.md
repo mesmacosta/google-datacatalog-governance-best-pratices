@@ -1,18 +1,50 @@
 # Tag Central
 
-This directory creates the Tag Tempaltes from [datacatalog-templates](https://github.com/GoogleCloudPlatform/datacatalog-templates) using terraform resources. It also sets up the IAM permissions for 3 personas: Data Governor, Data Curator and Data Analyst.
+Creates Data Catalog Tag Templates from [datacatalog-templates](https://github.com/GoogleCloudPlatform/datacatalog-templates) using terraform resources. It also sets up the IAM permissions for 3 personas: Data Governor, Data Curator and Data Analyst.
 
 Follow the instructions and make sure you have set up the [.tvars](terraform/.tfvars) with your environment values before running `terraform`. The IAM members for the suggested personas can be any of: user:{emailid}, serviceAccount:{emailid}, group:{emailid} or domain:{domain}.
 
 The [datacatalog_tag_template.tf](terraform/datacatalog_tag_template/main.tf) contains 4 Tag Templates: Data Engineering Template, Derived Data Template, Data Governance Template and Data Quality Template. They are suggestions, change the Tag Template Fields to fit your needs.
 
-*Data Governor*
+-----
+
+<!--
+  ⚠️ DO NOT UPDATE THE TABLE OF CONTENTS MANUALLY ️️⚠️
+  run `npx markdown-toc -i README.md`.
+
+  Please stick to 80-character line wraps as much as you can.
+-->
+
+## Table of Contents
+
+<!-- toc -->
+
+- [Detailed Permissions](#detailed-permissions)
+  * [Data Governor](#data-governor)
+  * [Data Curator](#data-curator)
+  * [Data Analyst](#data-analyst)
+- [Terraform Configuration](#terraform-configuration)
+  * [Run Terraform](#run-terraform)
+    + [Set terraform execution Service Account](#set-terraform-execution-service-account)
+    + [Set terraform execution project](#set-terraform-execution-project)
+    + [Set terraform variable placeholders](#set-terraform-variable-placeholders)
+    + [Init terraform](#init-terraform)
+    + [Execute terraform](#execute-terraform)
+  * [Cleanup](#cleanup)
+
+<!-- tocstop -->
+
+-----
+
+## Detailed Permissions
+
+### Data Governor 
 ![N|Solid](docs/data-govenor-persona.png "data-govenor-persona") 
 
-*Data Curator*
+### Data Curator 
 ![N|Solid](docs/data-curator-persona.png "data-curator-persona") 
 
-*Data Analyst*
+### Data Analyst
 ![N|Solid](docs/data-analyst-persona.png "data-analyst-persona") 
 
 ## Terraform Configuration
