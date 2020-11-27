@@ -2,7 +2,7 @@
 
 Creates Data Catalog Tag Templates from [datacatalog-templates](https://github.com/GoogleCloudPlatform/datacatalog-templates) using terraform resources. It also sets up the IAM permissions for 3 personas: Data Governor, Data Curator and Data Analyst.
 
-Follow the instructions and make sure you have set up the [.tvars](terraform/.tfvars) with your environment values before running `terraform`. The IAM members for the suggested personas can be any of: user:{emailid}, serviceAccount:{emailid}, group:{emailid} or domain:{domain}.
+Follow the instructions and make sure you have set up the [.tvars](terraform/.tfvars) with your environment values before running `terraform`. The IAM members for the suggested personas can be any of: `user:{emailid}, serviceAccount:{emailid}, group:{emailid} or domain:{domain}`.
 
 The [datacatalog_tag_template.tf](terraform/datacatalog_tag_template/main.tf) contains 4 Tag Templates: Data Engineering Template, Derived Data Template, Data Governance Template and Data Quality Template. They are suggestions, change the Tag Template Fields to fit your needs.
 
