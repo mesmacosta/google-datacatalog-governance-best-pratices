@@ -53,7 +53,7 @@ The [datacatalog_tag_template.tf](terraform/datacatalog_tag_template/main.tf) co
 
 #### Set terraform execution Service Account
 At the moment this guide was created, Data Catalog does not
-support using end user credentials from the Google Cloud SDK. So you need to set the service account before running terraform. As security best practices, we will not download the Service Account file, and will use Service Account impersonation in the terraform.
+support using end user credentials from the Google Cloud SDK. So you need to set the service account before running terraform. As security best practices, we will not download the Service Account key, so we  will use Service Account impersonation in the terraform execution.
 
 Create a Service Account with the required permissions to create Data Catalog Tag Templates.
 ```bash
