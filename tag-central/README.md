@@ -1,6 +1,9 @@
 # Tag Central
 
-Creates Data Catalog Tag Templates from [datacatalog-templates](https://github.com/GoogleCloudPlatform/datacatalog-templates) using terraform resources. It also sets up the IAM permissions for 3 personas: Data Governor, Data Curator and Data Analyst.
+Creates Data Catalog Tag Templates from [datacatalog-templates](https://github.com/GoogleCloudPlatform/datacatalog-templates) using terraform resources. It also sets up the IAM permissions for 3 personas:
+* Data Governor
+* Data Curator
+* Data Analyst
 
 Follow the instructions and make sure you have set up the [.tvars](terraform/.tfvars) with your environment values before running `terraform`. The IAM members for the suggested personas can be any of: `user:{emailid}, serviceAccount:{emailid}, group:{emailid} or domain:{domain}`.
 
