@@ -121,12 +121,6 @@ terraform plan -input=false -out=tfplan -var-file=".tfvars"
 terraform apply tfplan
 ```
 
-Terraform will show you what it plans to do, and prompt you to accept. Type "yes" to accept the plan.
-
-```bash
-yes
-```
-
 ### Cleanup
 
 Run the following to remove the resources Terraform provisioned:
