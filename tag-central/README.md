@@ -123,7 +123,7 @@ terraform init
 ```
 
 #### Execute terraform
-With the providers downloaded and a project set, you're ready to use Terraform. Go ahead!
+With the providers downloaded and terraform variables set, you're ready to use Terraform. Go ahead!
 
 ```bash
 terraform plan -input=false -out=tfplan -var-file=".tfvars" 
