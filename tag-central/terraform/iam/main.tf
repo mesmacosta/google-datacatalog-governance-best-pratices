@@ -22,21 +22,21 @@ resource "google_project_iam_member" "google_project_iam_member_data_governors" 
 }
 
 resource "google_project_iam_member" "google_project_iam_member_data_curators_dc_viwer" {
-  for_each = toset(var.datacatalog_data_governor_members)
+  for_each = toset(var.datacatalog_data_curator_members)
   member  = each.value
   project = var.tag_central_project_id
   role    = "roles/datacatalog.viewer"
 }
 
 resource "google_project_iam_member" "google_project_iam_member_data_curators_tag_template_user" {
-  for_each = toset(var.datacatalog_data_governor_members)
+  for_each = toset(var.datacatalog_data_curator_members)
   member  = each.value
   project = var.tag_central_project_id
   role    = "roles/datacatalog.tagTemplateUser"
 }
 
 resource "google_project_iam_member" "google_project_iam_member_data_analyst_dc_viwer" {
-  for_each = toset(var.datacatalog_data_governor_members)
+  for_each = toset(var.datacatalog_data_analyst_members)
   member  = each.value
   project = var.tag_central_project_id
   role    = "roles/datacatalog.viewer"

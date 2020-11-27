@@ -111,3 +111,9 @@ venv.bak/
 log/
 
 instructions.txt
+
+# Terraform files
+.terraform
+.terraform.*
+terraform.*
+tfplan

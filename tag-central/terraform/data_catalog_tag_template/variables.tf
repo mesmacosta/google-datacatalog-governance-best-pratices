@@ -14,7 +14,17 @@
  * limitations under the License.
  */
 
+variable "tag_central_project_id" {
+  description = "The ID of the project in which Data Catalog Resources will be stored."
+  type        = string
+}
+
 variable "tag_template_region" {
   description = "The name of the region used to create the sample Tag Templates."
+  type        = string
+}
+
+variable "datacatalog_resources_sa_name" {
+  description = "Name of the Service Account used to create Data Catalog resources."
   type        = string
 }

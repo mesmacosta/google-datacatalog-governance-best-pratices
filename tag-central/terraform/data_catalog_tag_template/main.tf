@@ -15,6 +15,7 @@
  */
 
 resource "google_data_catalog_tag_template" "data_eng_template" {
+  provider               = google.access_token
   tag_template_id = "data_eng_template"
   region = var.tag_template_region
   display_name = "Data Engineering Template"
@@ -77,10 +78,11 @@ resource "google_data_catalog_tag_template" "data_eng_template" {
     }
   }
 
-  force_delete = "false"
+  force_delete = "true"
 }
 
 resource "google_data_catalog_tag_template" "derived_data_template" {
+  provider               = google.access_token
   tag_template_id = "derived_data_template"
   region = var.tag_template_region
   display_name = "Derived Data Template"
@@ -154,10 +156,11 @@ resource "google_data_catalog_tag_template" "derived_data_template" {
     }
   }
 
-  force_delete = "false"
+  force_delete = "true"
 }
 
 resource "google_data_catalog_tag_template" "data_governance_template" {
+  provider               = google.access_token
   tag_template_id = "data_governance_template"
   region = var.tag_template_region
   display_name = "Data Governance Template"
@@ -380,10 +383,11 @@ resource "google_data_catalog_tag_template" "data_governance_template" {
     }
   }  
 
-  force_delete = "false"
+  force_delete = "true"
 }
 
 resource "google_data_catalog_tag_template" "data_quality_template" {
+  provider               = google.access_token
   tag_template_id = "data_quality_template"
   region = var.tag_template_region
   display_name = "Data Quality Template"
@@ -468,5 +472,5 @@ resource "google_data_catalog_tag_template" "data_quality_template" {
     }
   }  
 
-  force_delete = "false"
+  force_delete = "true"
 }

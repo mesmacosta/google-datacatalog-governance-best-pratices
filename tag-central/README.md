@@ -2,9 +2,29 @@
 
 ## Run Terraform
 
+### Set terraform execution Service Account
+At the moment this guide was created, Data Catalog does not
+support using end user credentials from the Google Cloud SDK. So you need to set the service account before running terraform.
+```bash
+export GOOGLE_CLOUD_PROJECT={project-id}
+export SA_NAME=terraform-dc-resources-sa
+
+# Create Service Account
+gcloud iam service-accounts create $SA_NAME \
+--display-name  "Service Account to create DC Resources" \
+--project $GOOGLE_CLOUD_PROJECT 
+
+# Add Tag Template Owner role
+gcloud projects add-iam-policy-binding $GOOGLE_CLOUD_PROJECT \
+--member "serviceAccount:$SA_NAME@$GOOGLE_CLOUD_PROJECT.iam.gserviceaccount.com" \
+--quiet \
+--project $GOOGLE_CLOUD_PROJECT \
+--role "roles/datacatalog.tagTemplateOwner"
+```
+
 ### Set terraform execution project
 ```bash
-export GOOGLE_CLOUD_PROJECT={{project-id}}
+export GOOGLE_CLOUD_PROJECT={project-id}
 ```
 
 ### Set terraform variable placeholders
@@ -43,39 +63,11 @@ terraform init
 With the providers downloaded and a project set, you're ready to use Terraform. Go ahead!
 
 ```bash
-terraform apply
+terraform plan -input=false -out=tfplan -var-file=".tfvars" 
+terraform apply tfplan
 ```
 
 Terraform will show you what it plans to do, and prompt you to accept. Type "yes" to accept the plan.
-
-```bash
-yes
-```
-
-
-## Post-Apply
-
-### Editing your config
-
-Now you've provisioned your resources in GCP! If you run a "plan", you should see no changes needed.
-
-```bash
-terraform plan
-```
-
-So let's make a change! Try editing a number, or appending a value to the name in the editor. Then,
-run a 'plan' again.
-
-```bash
-terraform plan
-```
-
-Afterwards you can run an apply, which implicitly does a plan and shows you the intended changes
-at the 'yes' prompt.
-
-```bash
-terraform apply
-```
 
 ```bash
 yes
@@ -86,7 +78,7 @@ yes
 Run the following to remove the resources Terraform provisioned:
 
 ```bash
-terraform destroy
+terraform destroy -var-file=".tfvars"
 ```
 ```bash
 yes

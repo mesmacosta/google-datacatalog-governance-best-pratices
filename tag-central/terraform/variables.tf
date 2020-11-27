@@ -39,3 +39,8 @@ variable "datacatalog_data_analyst_members" {
   description = "List of members that will be granted the Data Analyst permissions on Data Catalog. Can be any of: user:{emailid}, serviceAccount:{emailid}, group:{emailid} or domain:{domain}"
   type    = list(string)
 }
+
+variable "datacatalog_resources_sa_name" {
+  description = "Name of the Service Account used to create Data Catalog resources."
+  type        = string
+}

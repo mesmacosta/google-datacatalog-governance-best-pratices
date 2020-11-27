@@ -15,5 +15,30 @@
  */
 
 provider "google" {
-  version = "~>v3.27.0"
+  version = "~> 3.27.0"
+  alias   = "tokengen"
+}
+
+locals {
+  datacatalog_resources_sa_email = "${var.datacatalog_resources_sa_name}@${var.tag_central_project_id}.iam.gserviceaccount.com"
+}
+
+data "google_client_config" "default" {
+  provider = google.tokengen
+}
+
+data "google_service_account_access_token" "sa" {
+  provider               = google.tokengen
+  target_service_account = local.datacatalog_resources_sa_email
+  lifetime               = "60s"
+scopes = [
+    "https://www.googleapis.com/auth/cloud-platform",
+  ]
+}
+
+provider "google" {
+  version = "~> 3.27.0"
+  access_token = data.google_service_account_access_token.sa.access_token
+  alias = "access_token"
+  project      = var.tag_central_project_id
 }

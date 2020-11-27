@@ -14,10 +14,6 @@
  * limitations under the License.
  */
 
-provider "google" {
-  version = "~>v3.27.0"
-}
-
 resource "google_project_service" "project_services_tag_central" {
   project  = var.tag_central_project_id
   service = "datacatalog.googleapis.com"
@@ -34,6 +30,8 @@ module "iam" {
 
 module "data_catalog_tag_template" {
   source = "./data_catalog_tag_template"
+  tag_central_project_id      = var.tag_central_project_id
   tag_template_region = var.tag_template_region
+  datacatalog_resources_sa_name = var.datacatalog_resources_sa_name
 }
 
