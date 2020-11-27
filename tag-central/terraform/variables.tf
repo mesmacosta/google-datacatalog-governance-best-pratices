@@ -19,6 +19,11 @@ variable "tag_central_project_id" {
   type        = string
 }
 
+variable "datacatalog_analytics_projects_id" {
+  description = "List of Analytics projects that will be used for Tagging assets"
+  type    = list(string)
+}
+
 variable "tag_template_region" {
   description = "The name of the region used to create the sample Tag Templates."
   type        = string

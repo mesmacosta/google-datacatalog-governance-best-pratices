@@ -23,6 +23,7 @@ resource "google_project_service" "project_services_tag_central" {
 module "iam" {
   source = "./iam"
   tag_central_project_id      = var.tag_central_project_id
+  datacatalog_analytics_projects_id      = var.datacatalog_analytics_projects_id
   datacatalog_data_governor_members = var.datacatalog_data_governor_members
   datacatalog_data_curator_members = var.datacatalog_data_curator_members
   datacatalog_data_analyst_members = var.datacatalog_data_analyst_members  

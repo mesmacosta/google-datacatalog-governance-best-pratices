@@ -14,30 +14,104 @@
  * limitations under the License.
  */
 
-resource "google_project_iam_member" "google_project_iam_member_data_governors" {
+locals {
+  # Projects for each data governor member
+  iam_data_governor_dc_analytics_obj = flatten([
+    for datacatalog_analytic_project_id in var.datacatalog_analytics_projects_id : [
+      for datacatalog_data_governor_member in var.datacatalog_data_governor_members : {
+        dc_analytic_project_id       = datacatalog_analytic_project_id
+        dc_member       = datacatalog_data_governor_member
+      }
+    ]
+  ])
+
+  # Projects for each data curator member
+  iam_data_curator_dc_analytics_obj = flatten([
+    for datacatalog_analytic_project_id in var.datacatalog_analytics_projects_id : [
+      for datacatalog_data_curator_member in var.datacatalog_data_curator_members : {
+        dc_analytic_project_id       = datacatalog_analytic_project_id
+        dc_member       = datacatalog_data_curator_member
+      }
+    ]
+  ])
+
+  # Projects for each data analytics member
+  iam_data_analytics_dc_analytics_obj = flatten([
+    for datacatalog_analytic_project_id in var.datacatalog_analytics_projects_id : [
+      for datacatalog_data_analyst_member in var.datacatalog_data_analyst_members : {
+        dc_analytic_project_id       = datacatalog_analytic_project_id
+        dc_member       = datacatalog_data_analyst_member
+      }
+    ]
+  ])
+}
+
+# ADD IAM Roles for the Tag Central project
+resource "google_project_iam_member" "google_tag_central_project_iam_member_data_governors" {
   for_each = toset(var.datacatalog_data_governor_members)
   member  = each.value
   project = var.tag_central_project_id
   role    = "roles/datacatalog.admin"
 }
 
-resource "google_project_iam_member" "google_project_iam_member_data_curators_dc_viwer" {
+resource "google_project_iam_member" "google_tag_central_project_iam_member_data_curators_dc_viwer" {
   for_each = toset(var.datacatalog_data_curator_members)
   member  = each.value
   project = var.tag_central_project_id
   role    = "roles/datacatalog.viewer"
 }
 
-resource "google_project_iam_member" "google_project_iam_member_data_curators_tag_template_user" {
+resource "google_project_iam_member" "google_tag_central_project_iam_member_data_curators_tag_template_user" {
   for_each = toset(var.datacatalog_data_curator_members)
   member  = each.value
   project = var.tag_central_project_id
   role    = "roles/datacatalog.tagTemplateUser"
 }
 
-resource "google_project_iam_member" "google_project_iam_member_data_analyst_dc_viwer" {
+resource "google_project_iam_member" "google_tag_central_project_iam_member_data_analyst" {
   for_each = toset(var.datacatalog_data_analyst_members)
   member  = each.value
   project = var.tag_central_project_id
+  role    = "roles/datacatalog.viewer"
+}
+
+# ADD IAM Roles for the Analytics project
+resource "google_project_iam_member" "google_analytics_project_iam_member_data_governors" {
+  for_each = {
+    for iam_obj in local.iam_data_governor_dc_analytics_obj : "${iam_obj.dc_analytic_project_id}.${iam_obj.dc_member}" => iam_obj
+  }
+  
+  member  = each.value.dc_member
+  project = each.value.dc_analytic_project_id
+  role    = "roles/datacatalog.admin"
+}
+
+resource "google_project_iam_member" "google_analytics_project_iam_member_data_curators_dc_viwer" {
+  for_each = {
+    for iam_obj in local.iam_data_curator_dc_analytics_obj : "${iam_obj.dc_analytic_project_id}.${iam_obj.dc_member}" => iam_obj
+  }
+
+  member  = each.value.dc_member
+  project = each.value.dc_analytic_project_id
+  role    = "roles/datacatalog.viewer"
+}
+
+resource "google_project_iam_member" "google_analytics_project_iam_member_data_curators_dc_tag_editor" {
+  for_each = {
+    for iam_obj in local.iam_data_curator_dc_analytics_obj : "${iam_obj.dc_analytic_project_id}.${iam_obj.dc_member}" => iam_obj
+  }
+
+  member  = each.value.dc_member
+  project = each.value.dc_analytic_project_id
+  role    = "roles/datacatalog.tagEditor"
+}
+
+resource "google_project_iam_member" "google_analytics_project_iam_member_data_analyst" {
+  for_each = {
+    for iam_obj in local.iam_data_analytics_dc_analytics_obj : "${iam_obj.dc_analytic_project_id}.${iam_obj.dc_member}" => iam_obj
+  }
+
+  member  = each.value.dc_member
+  project = each.value.dc_analytic_project_id
   role    = "roles/datacatalog.viewer"
 }

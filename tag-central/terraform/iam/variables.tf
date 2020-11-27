@@ -19,6 +19,11 @@ variable "tag_central_project_id" {
   type        = string
 }
 
+variable "datacatalog_analytics_projects_id" {
+  description = "List of Analytics projects that will be used for Tagging assets"
+  type    = list(string)
+}
+
 variable "datacatalog_data_governor_members" {
   description = "List of members that will be granted the Data Governor permissions on Data Catalog. Can be any of: user:{emailid}, serviceAccount:{emailid}, group:{emailid} or domain:{domain}"
   type    = list(string)
