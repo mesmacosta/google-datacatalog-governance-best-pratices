@@ -15,7 +15,7 @@
  */
 
 locals {
-  # Projects for each data governor member
+  # Analytics projects for each data governor member
   iam_data_governor_dc_analytics_obj = flatten([
     for datacatalog_analytic_project_id in var.datacatalog_analytics_projects_id : [
       for datacatalog_data_governor_member in var.datacatalog_data_governor_members : {
@@ -25,7 +25,7 @@ locals {
     ]
   ])
 
-  # Projects for each data curator member
+  # Analytics projects for each data curator member
   iam_data_curator_dc_analytics_obj = flatten([
     for datacatalog_analytic_project_id in var.datacatalog_analytics_projects_id : [
       for datacatalog_data_curator_member in var.datacatalog_data_curator_members : {
@@ -35,7 +35,7 @@ locals {
     ]
   ])
 
-  # Projects for each data analytics member
+  # Analytics projects for each data analytics member
   iam_data_analytics_dc_analytics_obj = flatten([
     for datacatalog_analytic_project_id in var.datacatalog_analytics_projects_id : [
       for datacatalog_data_analyst_member in var.datacatalog_data_analyst_members : {

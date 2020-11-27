@@ -117,3 +117,4 @@ instructions.txt
 .terraform.*
 terraform.*
 tfplan
+.tfvars_dev

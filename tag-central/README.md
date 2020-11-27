@@ -1,10 +1,29 @@
-# Terraform Configuration
+# Tag Central
 
-## Run Terraform
+This directory creates the Tag Tempaltes from [datacatalog-templates](https://github.com/GoogleCloudPlatform/datacatalog-templates) using terraform resources. It also sets up the IAM permissions for 3 personas: Data Governor, Data Curator and Data Analyst.
 
-### Set terraform execution Service Account
+Follow the instructions and make sure you have set up the [.tvars](terraform/.tfvars) with your environment values before running `terraform`. The IAM members for the suggested personas can be any of: user:{emailid}, serviceAccount:{emailid}, group:{emailid} or domain:{domain}.
+
+The [datacatalog_tag_template.tf](terraform/datacatalog_tag_template/main.tf) contains 4 Tag Templates: Data Engineering Template, Derived Data Template, Data Governance Template and Data Quality Template. They are suggestions, change the Tag Template Fields to fit your needs.
+
+*Data Governor*
+![N|Solid](docs/data-govenor-persona.png "data-govenor-persona") 
+
+*Data Curator*
+![N|Solid](docs/data-curator-persona.png "data-curator-persona") 
+
+*Data Analyst*
+![N|Solid](docs/data-analyst-persona.png "data-analyst-persona") 
+
+## Terraform Configuration
+
+### Run Terraform
+
+#### Set terraform execution Service Account
 At the moment this guide was created, Data Catalog does not
-support using end user credentials from the Google Cloud SDK. So you need to set the service account before running terraform.
+support using end user credentials from the Google Cloud SDK. So you need to set the service account before running terraform. As security best practices, we will not download the Service Account file, and will use Service Account impersonation in the terraform.
+
+Create a Service Account with the required permissions to create Data Catalog Tag Templates.
 ```bash
 export GOOGLE_CLOUD_PROJECT={project-id}
 export SA_NAME=terraform-dc-resources-sa
@@ -22,12 +41,12 @@ gcloud projects add-iam-policy-binding $GOOGLE_CLOUD_PROJECT \
 --role "roles/datacatalog.tagTemplateOwner"
 ```
 
-### Set terraform execution project
+#### Set terraform execution project
 ```bash
 export GOOGLE_CLOUD_PROJECT={project-id}
 ```
 
-### Set terraform variable placeholders
+#### Set terraform variable placeholders
 
 Go to [.tvars](terraform/.tfvars) and change the placeholders:
 
@@ -41,6 +60,10 @@ Example of a valid configuration:
 ```text
 tag_central_project_id="tag-central-project"
 
+datacatalog_analytics_projects_id=["my-analytics-project-1","my-analytics-project-2"]
+
+datacatalog_resources_sa_name="terraform-dc-resources-sa"
+
 tag_template_region="us"
 
 datacatalog_data_governor_members=["user:john_data_governor@datacompany.com", "group:data_governors@datacompany.com"]
@@ -52,14 +75,14 @@ datacatalog_data_analyst_members=["user:john_data_analytic@datacompany.com", "gr
 
 > member can be any of: user:{emailid}, serviceAccount:{emailid}, group:{emailid} or domain:{domain}  
 
-### Init terraform
+#### Init terraform
 After that, let's get Terraform started. Run the following to pull in the providers.
 
 ```bash
 terraform init
 ```
 
-### Execute terraform
+#### Execute terraform
 With the providers downloaded and a project set, you're ready to use Terraform. Go ahead!
 
 ```bash
@@ -73,7 +96,7 @@ Terraform will show you what it plans to do, and prompt you to accept. Type "yes
 yes
 ```
 
-## Cleanup
+### Cleanup
 
 Run the following to remove the resources Terraform provisioned:
 

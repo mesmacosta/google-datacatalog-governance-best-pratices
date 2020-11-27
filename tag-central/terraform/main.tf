@@ -29,8 +29,8 @@ module "iam" {
   datacatalog_data_analyst_members = var.datacatalog_data_analyst_members  
 }
 
-module "data_catalog_tag_template" {
-  source = "./data_catalog_tag_template"
+module "datacatalog_tag_template" {
+  source = "./datacatalog_tag_template"
   tag_central_project_id      = var.tag_central_project_id
   tag_template_region = var.tag_template_region
   datacatalog_resources_sa_name = var.datacatalog_resources_sa_name
