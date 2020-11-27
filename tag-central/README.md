@@ -79,7 +79,7 @@ gcloud projects add-iam-policy-binding $GOOGLE_CLOUD_PROJECT \
 Go to [.tvars](terraform/.tfvars) and change the placeholders:
 
 1. `tag_central_project_id` to your Tag Central Project
-1. `datacatalog_analytics_projects_id` to the list of Analytics Projects
+1. `datacatalog_analytics_projects_id` to the list of Analytics Projects split by comma
 1. `tag_template_region` to the region you want the sample templates to be created
 1. `datacatalog_data_governor_members` to the list of data governor members split by comma
 1. `datacatalog_data_curator_members` to the list of data curator members split by comma
