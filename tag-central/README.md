@@ -75,6 +75,8 @@ datacatalog_data_analyst_members=["user:john_data_analytic@datacompany.com", "gr
 
 > member can be any of: user:{emailid}, serviceAccount:{emailid}, group:{emailid} or domain:{domain}  
 
+Run the following commands inside the [terraform](terraform) directory.
+
 #### Init terraform
 After that, let's get Terraform started. Run the following to pull in the providers.
 
