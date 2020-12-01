@@ -2,6 +2,8 @@
 
 Repo with scripts and automations to help ensure best practices in Google Data Catalog
 
+-----
+
 **Disclaimer: This is not an officially supported Google product.**
 
 **Samples**:
