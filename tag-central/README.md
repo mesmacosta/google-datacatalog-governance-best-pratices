@@ -85,7 +85,7 @@ gcloud projects add-iam-policy-binding $GOOGLE_CLOUD_PROJECT \
 
 #### Set terraform variable placeholders
 
-Go to [.tvars](terraform/.tfvars) and change the placeholders:
+Go to [.tfvars](terraform/.tfvars) and change the placeholders:
 
 1. `tag_central_project_id` to your Tag Central Project
 1. `datacatalog_analytics_projects_id` to the list of Analytics Projects split by comma
