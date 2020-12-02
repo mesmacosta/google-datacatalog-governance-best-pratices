@@ -99,7 +99,7 @@ It takes about 1 minute to IAM propagate the Service Account Token Creator Role,
 ```
 Error: googleapi: Error 403: The caller does not have permission, forbidden
 ```
-Wait a few minutes and run it again.
+Wait a **few minutes** and run it again.
 
 #### Set terraform variable placeholders
 
