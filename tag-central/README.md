@@ -95,7 +95,7 @@ gcloud iam service-accounts add-iam-policy-binding \
 --role "roles/iam.serviceAccountTokenCreator"
 ```
 
-It takes about 1 minute to IAM propagate the Service Account Token Creator Role, so if you receive the following error when running `terraform`:
+It takes about 1 minute to IAM propagate the `Tag Template Owner role` and `Service Account Token Creator` Roles used by in this script, so if you receive the following error when running `terraform`:
 ```
 Error: googleapi: Error 403: The caller does not have permission, forbidden
 ```
