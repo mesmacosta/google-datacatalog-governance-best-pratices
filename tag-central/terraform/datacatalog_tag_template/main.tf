@@ -14,6 +14,12 @@
  * limitations under the License.
  */
 
+resource "google_project_service" "project_services_tag_central" {
+  project  = var.tag_central_project_id
+  service = "datacatalog.googleapis.com"
+  disable_on_destroy = false
+}
+
 resource "google_data_catalog_tag_template" "data_eng_template" {
   provider               = google.access_token
   tag_template_id = "data_eng_template"
@@ -79,6 +85,8 @@ resource "google_data_catalog_tag_template" "data_eng_template" {
   }
 
   force_delete = "true"
+
+  depends_on = [google_project_service.project_services_tag_central]
 }
 
 resource "google_data_catalog_tag_template" "derived_data_template" {
@@ -157,6 +165,8 @@ resource "google_data_catalog_tag_template" "derived_data_template" {
   }
 
   force_delete = "true"
+
+  depends_on = [google_project_service.project_services_tag_central]
 }
 
 resource "google_data_catalog_tag_template" "data_governance_template" {
@@ -384,6 +394,8 @@ resource "google_data_catalog_tag_template" "data_governance_template" {
   }  
 
   force_delete = "true"
+
+  depends_on = [google_project_service.project_services_tag_central]
 }
 
 resource "google_data_catalog_tag_template" "data_quality_template" {
@@ -473,4 +485,6 @@ resource "google_data_catalog_tag_template" "data_quality_template" {
   }  
 
   force_delete = "true"
+
+  depends_on = [google_project_service.project_services_tag_central]
 }
