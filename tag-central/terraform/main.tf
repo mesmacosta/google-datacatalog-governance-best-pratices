@@ -14,19 +14,13 @@
  * limitations under the License.
  */
 
-resource "google_project_service" "project_services_tag_central" {
-  project  = var.tag_central_project_id
-  service = "datacatalog.googleapis.com"
-  disable_on_destroy = false
-}
-
 module "iam" {
   source = "./iam"
   tag_central_project_id      = var.tag_central_project_id
   datacatalog_analytics_projects_id      = var.datacatalog_analytics_projects_id
   datacatalog_data_governor_members = var.datacatalog_data_governor_members
   datacatalog_data_curator_members = var.datacatalog_data_curator_members
-  datacatalog_data_analyst_members = var.datacatalog_data_analyst_members  
+  datacatalog_data_analyst_members = var.datacatalog_data_analyst_members
 }
 
 module "datacatalog_tag_template" {
@@ -35,4 +29,3 @@ module "datacatalog_tag_template" {
   tag_template_region = var.tag_template_region
   datacatalog_resources_sa_name = var.datacatalog_resources_sa_name
 }
-
