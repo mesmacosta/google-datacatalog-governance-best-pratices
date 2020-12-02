@@ -81,6 +81,18 @@ gcloud projects add-iam-policy-binding $GOOGLE_CLOUD_PROJECT \
 --quiet \
 --project $GOOGLE_CLOUD_PROJECT \
 --role "roles/datacatalog.tagTemplateOwner"
+
+# Change to your user
+export TERRAFORM_USER_EMAIL={my-user-email}
+
+# Give Service Account Token Creator Role for the SA to the user
+# running terraform
+gcloud iam service-accounts add-iam-policy-binding \
+"$SA_NAME@$GOOGLE_CLOUD_PROJECT.iam.gserviceaccount.com" \
+--member "user:$TERRAFORM_USER_EMAIL" \
+--quiet \
+--project $GOOGLE_CLOUD_PROJECT \
+--role "roles/iam.serviceAccountTokenCreator"
 ```
 
 #### Set terraform variable placeholders
