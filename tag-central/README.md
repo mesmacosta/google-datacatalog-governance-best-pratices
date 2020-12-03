@@ -60,6 +60,9 @@ They are suggestions, change the Tag Template Fields to fit your needs.
 
 ### Run Terraform
 
+The sample works with a list of projects, if you want to use the recommended access controls at the **folder** or **organization** level, you can change the [iam module](terraform/iam/main.tf):
+and switch the `google_project_iam_member` resource to `google_folder_iam_member` or `google_organization_iam_member` respectively.
+
 #### Set terraform execution Service Account
 At the moment this guide was created, Data Catalog does not
 support using end user credentials from the Google Cloud SDK. You need to set the service account before running terraform. As security best practices, we will not download the Service Account key, so we  will use Service Account impersonation in the terraform execution.
