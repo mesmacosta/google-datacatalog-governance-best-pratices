@@ -98,11 +98,16 @@ gcloud iam service-accounts add-iam-policy-binding \
 --role "roles/iam.serviceAccountTokenCreator"
 ```
 
-It takes about 1 minute to IAM propagate the `Tag Template Owner role` and `Service Account Token Creator` Roles used by in this script, so if you receive the following error when running `terraform`:
+:exclamation: It takes about 1 minute to IAM propagate the `Tag Template Owner role` and `Service Account Token Creator` Roles used by in this script, so if you receive the following error when running `terraform`:
 ```
 Error: googleapi: Error 403: The caller does not have permission, forbidden
 ```
 Wait a **few minutes** and run it again.
+
+:exclamation: If you receive an error saying that Data Catalog API is not enabled, wait a few minutes or force it using `gcloud`:
+```
+gcloud services enable datacatalog.googleapis.com --project $GOOGLE_CLOUD_PROJECT
+```
 
 #### Set terraform variable placeholders
 
