@@ -105,7 +105,7 @@ resource "google_data_catalog_tag_template" "derived_data_template" {
 
   fields {
     field_id = "aggregated_data"
-    display_name = "Aggregated Dat"
+    display_name = "Aggregated Data"
     type {
       primitive_type = "BOOL"
     }
